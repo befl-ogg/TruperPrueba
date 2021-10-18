@@ -10,8 +10,8 @@ import com.truper.truper.po.ProductosPO;
 
 public interface ProductosRepository extends JpaRepository<ProductosPO, Integer>{
 	
-	@Query(value = "SELECT * FROM PRODUCTOS p WHERE p.orden_id = :ordenId ", nativeQuery = true)
-	public List<ProductosPO> getProductosByIdOrden(@Param("ordenId") Integer ordenId);
+	@Query(value = "SELECT p FROM ProductosPO as p WHERE p.orden.id = :ordenId ")
+	public List<ProductosPO> obtenerProductosPorIdOrden(@Param("ordenId") Integer ordenId);
 	
-
 }
+	

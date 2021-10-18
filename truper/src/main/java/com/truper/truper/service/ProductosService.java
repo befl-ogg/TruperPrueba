@@ -16,16 +16,16 @@ public class ProductosService {
 	@Resource
 	public ProductosRepository repProductos;
 	
-	public boolean guardarProducto(ProductosPO producto) {
-		ProductosPO prodPersist = repProductos.save(producto);
-		if(Objects.nonNull(prodPersist)) {
-			return true;
+	public ProductosPO guardarProducto(ProductosPO producto) {
+		producto = repProductos.save(producto);
+		if(Objects.nonNull(producto)) {
+			return producto;
 		} else {
-			return false;
+			return null;
 		}
 	}
 	
-	public List<ProductosPO> getProductosByIdOrden (Integer ordenId) {
-		return repProductos.getProductosByIdOrden(ordenId);
+	public List<ProductosPO> obtenerProductosPorIdOrden (Integer ordenId) {
+		return repProductos.obtenerProductosPorIdOrden(ordenId);
 	}
 }

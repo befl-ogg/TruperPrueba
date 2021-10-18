@@ -1,7 +1,10 @@
 package com.truper.truper.po;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,14 +14,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCTOS")
-public class ProductosPO {
-	
+public class ProductosPO implements Serializable{
+	private static final long serialVersionUID = 8496711750885187827L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "producto_id", unique = true, nullable = false)
 	private Integer producto_id;
 	
-	@JoinColumn(name = "order_id")
-	@ManyToOne
+	@JoinColumn(name = "orden_id")
+	@ManyToOne(fetch = FetchType.EAGER)
 	private OrdenesPO orden;
 	
 	@Column(name = "codigo")
@@ -69,5 +74,7 @@ public class ProductosPO {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+
+	
 	
 }

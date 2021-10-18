@@ -13,6 +13,7 @@ public class SucursalesPO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sucursal_id", unique = true, nullable = false)
 	private Integer sucursal_id;
 	
 	@Column(name = "nombre")
@@ -33,6 +34,6 @@ public class SucursalesPO {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	
 }

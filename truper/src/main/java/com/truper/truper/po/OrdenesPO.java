@@ -1,9 +1,11 @@
 package com.truper.truper.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,14 +15,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ORDENES")
-public class OrdenesPO {
-	
+public class OrdenesPO implements Serializable{
+	private static final long serialVersionUID = -1689493662774461108L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "orden_id", unique = true, nullable = false)
 	private Integer orden_id;
 	
 	@JoinColumn(name = "sucursal_id")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private SucursalesPO sucursal;
 	
 	@Column(name = "fecha")
@@ -35,6 +39,14 @@ public class OrdenesPO {
 
 	public void setOrden_id(Integer orden_id) {
 		this.orden_id = orden_id;
+	}
+
+	public SucursalesPO getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(SucursalesPO sucursal) {
+		this.sucursal = sucursal;
 	}
 
 	public Date getFecha() {
@@ -52,13 +64,6 @@ public class OrdenesPO {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
+
 	
-	public SucursalesPO getSucurlal() {
-		return sucursal;
-	}
-
-	public void setSucurlal(SucursalesPO sucurlal) {
-		this.sucursal = sucurlal;
-	}
-
 }

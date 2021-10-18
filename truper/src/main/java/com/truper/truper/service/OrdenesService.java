@@ -1,5 +1,6 @@
 package com.truper.truper.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -26,6 +27,10 @@ public class OrdenesService {
 		} else {
 			return null;
 		}
+	}
+	
+	public List<OrdenesPO> obtenerOrdenes() {
+		return repOrdenes.findAll();
 	}
 
 }

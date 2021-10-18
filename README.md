@@ -22,6 +22,7 @@ CREATE TABLE PRODUCTOS(
 	producto_id INT NOT NULL AUTO_INCREMENT,
 	orden_id INT NOT NULL,
 	codigo varchar(20) NOT NULL,
+	descripcion varchar(200) NOT NULL,
 	precio decimal NOT NULL,
 	PRIMARY KEY (producto_id),
 	FOREIGN KEY (orden_id) REFERENCES ORDENES(orden_id)
